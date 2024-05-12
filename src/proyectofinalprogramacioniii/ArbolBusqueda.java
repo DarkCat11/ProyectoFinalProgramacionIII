@@ -9,5 +9,9 @@ package proyectofinalprogramacioniii;
  * @author PC
  */
 public class ArbolBusqueda {
+    NodoArbol raiz;
     
+    public ArbolBusqueda(){
+        raiz = null;
+    }
 }
