@@ -17,7 +17,7 @@ public class ArbolBusqueda {
 
     }
 
-    public void InsetarDatos(int id, String dpi, String nombre) {
+    public void InsertarDatos(int id, String dpi, String nombre) {
         NodoArbol newTree= new NodoArbol(id, dpi, nombre);
         if(raiz == null)
         {
@@ -50,5 +50,42 @@ public class ArbolBusqueda {
         }
         
 
+    }
+    
+    public NodoArbol BusquedaPorID(int id)
+    {
+        NodoArbol Auxiliar = raiz;
+        while(Auxiliar.ID != id)
+        {
+            if(id < Auxiliar.ID)
+            {
+                Auxiliar = Auxiliar.RamaIzquierda;
+                
+            }else
+            {
+                Auxiliar = Auxiliar.RamaDerecha;
+            }
+            if(Auxiliar == null)
+            {
+               return null; 
+            }
+        }
+        return Auxiliar;
+        
+    }
+    
+    public boolean estaVacio()
+    {
+        return raiz == null;
+    }
+    
+    public void LeerArbol(NodoArbol Raiz)
+    {
+     if(Raiz != null)
+     {
+         LeerArbol(Raiz.RamaIzquierda);
+         System.out.println("ID: " + Raiz.ID + "\tDPI:" + Raiz.DPI + "\tNombre: " + Raiz.NOMBRE);
+         LeerArbol(Raiz.RamaDerecha);
+     }
     }
 }
