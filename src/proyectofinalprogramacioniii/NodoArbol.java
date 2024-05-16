@@ -25,6 +25,6 @@ public class NodoArbol {
     }
     
     public String toString(){
-        return "\nId de pasajero: " + ID + " \nDocumento personal de identificacion: " + DPI + "\nNombre del pasajero: " + NOMBRE;
+        return "\nId de pasajero: " + ID + " \nDocumento personal de identificacion: " + DPI + "\nNombre del pasajero: " + NOMBRE + "\n";
     }
 }

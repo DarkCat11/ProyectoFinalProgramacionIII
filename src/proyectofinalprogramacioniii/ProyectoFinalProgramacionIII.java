@@ -66,12 +66,14 @@ public class ProyectoFinalProgramacionIII {
             System.out.println("Esta vacio");
         }
         
-        System.out.println("\nIngrese ID a buscar");
+        System.out.print("\nIngrese ID a buscar: ");
         id = cin.nextInt();
         
+        long InicioEjecucion = System.nanoTime();
         System.out.print("Sus datos son: " + Arbol.BusquedaPorID(id));
-      
-
+        long FinalEjecucion = System.nanoTime();   
+        
+        System.out.println("\nDuracion de busqueda: " + ((FinalEjecucion - InicioEjecucion)/1000) +  "µs");
     }
 
     public static boolean ValidarNumeros(String numero) {
@@ -93,7 +95,7 @@ public class ProyectoFinalProgramacionIII {
         Scanner cin = new Scanner(System.in);
         ManejoDeArchivos CSV = new ManejoDeArchivos();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
             id = CSV.ID();
             System.out.print("\nSu ID: " + id);
 

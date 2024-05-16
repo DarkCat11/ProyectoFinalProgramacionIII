@@ -46,10 +46,4 @@ public class ManejoDeArchivos {
         return NumeroRandom;
     }
      
-     void eliminarArchivo(String NombreArchivo)
-     {
-         
-     }
-     
-     
 }
