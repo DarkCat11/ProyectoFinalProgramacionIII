@@ -3,16 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyectofinalprogramacioniii;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author PC
  */
 public class ManejoDeArchivos {
+    
+    ArbolBusqueda IngresarDatos = new ArbolBusqueda();
     
     void GenerarArchivo(String Pasajeros, int ID, String DPI, String nombre){
         
@@ -39,8 +46,4 @@ public class ManejoDeArchivos {
         return NumeroRandom;
     }
      
-     void eliminarArchivo(String NombreArchivo)
-     {
-         
-     }
 }
