@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -31,49 +32,106 @@ public class ProyectoFinalProgramacionIII {
         int id = 0;
         String dpi = null;
         String nombre = null;
-        
+        int menu;
         int BusquedaID;
         boolean flag = false;
 
         //IngresarDatosCSV(id, dpi, nombre, flag);
+        System.out.println("Menu de acciones");
+        System.out.println("1. Insertar datos de arhivo CSV al arbol de busqueda");
+        System.out.println("2. Leer arbol de busqueda");
+        System.out.println("3. Buscar un nodo en el arbol de busqueda");
+        System.out.println("4. Eliminar un dato en el arbol de busqueda");
+        System.out.println("5. Mostrar arbol grafico");
+        System.out.println("6. Salir");
+
         
-        try {
-            BufferedReader Leer = new BufferedReader(new FileReader("Pasajeros.csv"));
-            String Linea = "";
-            while((Linea = Leer.readLine())!= null)
-            {
-                String[] Separacion = Linea.split(",");
-                
-                id = Integer.parseInt(Separacion[0]);
-                dpi = Separacion[1];
-                nombre = Separacion[2];
-                //System.out.print("\nID: " +id + "\nDPI: " + dpi + "\nNombre: " + nombre);
-                Arbol.InsertarDatos(id, dpi, nombre);
+        
+        do{
+            
+            System.out.print("\nIngresar opcion: ");
+           try
+           {
+             menu = cin.nextInt();  
+           }catch(Exception e){
+               System.out.print("Ingrese una opcion valida: ");
+               menu = cin.nextInt();  
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                
+            
+            
+            switch(menu)
+            {
+                case 1:
+                    try {
+                    BufferedReader Leer = new BufferedReader(new FileReader("Pasajeros.csv"));
+                    String Linea = "";
+                    while ((Linea = Leer.readLine()) != null) {
+                        String[] Separacion = Linea.split(",");
+
+                        id = Integer.parseInt(Separacion[0]);
+                        dpi = Separacion[1];
+                        nombre = Separacion[2];
+                        //System.out.print("\nID: " +id + "\nDPI: " + dpi + "\nNombre: " + nombre);
+                        Arbol.InsertarDatos(id, dpi, nombre);
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+           
+                case 2:
+                    if (!Arbol.estaVacio()) {
+                        Arbol.LeerArbol(Arbol.raiz);
+                    } else {
+                        System.out.println("Esta vacio");
+                    }
+                    break;
+                    
+                case 3:
+                    System.out.print("\nIngrese ID a buscar: ");
+                    id = cin.nextInt();
+
+                    long InicioEjecucion = System.nanoTime();
+                    System.out.print("Sus datos son: " + Arbol.BusquedaPorID(id));
+                    long FinalEjecucion = System.nanoTime();
+
+                    System.out.println("\nDuracion de busqueda: " + ((FinalEjecucion - InicioEjecucion) / 1000) + "µs");
+                    break;
+       
+                case 4:
+                    
+                    if (!Arbol.estaVacio()) {
+                        System.out.print("\nIngrese ID a eliminar: ");
+                        id = cin.nextInt();
+                        if (Arbol.EliminarNodo(id) == false) {
+                            System.out.println("No se encuentra dentro del arbol");
+                        } else {
+                            System.out.println("Nodo eliminado");
+                            Arbol.LeerArbol(Arbol.raiz);
+                        }
+                    }
+                    break;
+                    
+                case 5:
+                     
+                     Arbol.DibujarArbol();
+                    break;
+            }
+
+        }while(menu !=6);
         
         
         
-        if(!Arbol.estaVacio())
-        {
-              Arbol.LeerArbol(Arbol.raiz);
-        }
-        else{
-            System.out.println("Esta vacio");
-        }
         
-        System.out.print("\nIngrese ID a buscar: ");
-        id = cin.nextInt();
         
-        long InicioEjecucion = System.nanoTime();
-        System.out.print("Sus datos son: " + Arbol.BusquedaPorID(id));
-        long FinalEjecucion = System.nanoTime();   
+       
         
-        System.out.println("\nDuracion de busqueda: " + ((FinalEjecucion - InicioEjecucion)/1000) +  "µs");
+        
+        
+        
     }
 
     public static boolean ValidarNumeros(String numero) {
@@ -83,12 +141,6 @@ public class ProyectoFinalProgramacionIII {
     public static boolean ValidarLetras(String texto) {
         return texto.matches("[a-zA-Z]*");
     }
-    
-    public static void LeerArchivo(int id, String dpi, String nombre)
-     {
-        
-         
-     }
     
 
     public static void IngresarDatosCSV(int id, String dpi, String nombre, boolean flag) {

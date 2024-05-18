@@ -1,0 +1,17 @@
+digraph G
+node [shape = circle]
+node [style = filled]
+node [fillcolor = "#EEEEE"]
+node [color = "#EEEEE"]
+edge [color = "#31CEF0"]
+74439->16988->1096
+16988->33370->68806->35241->51068
+
+68806->71864
+
+
+
+74439->92529->78328
+
+
+}
